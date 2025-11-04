@@ -457,9 +457,19 @@ body {
   border: 1px solid #ffe58f !important;
 }
 
-/* Respect reduced motion */
+/* Respect reduced motion without breaking Ant Design motion classes */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  :root {
+    --transition-fast: none;
+    --transition-base: none;
+    --transition-slow: none;
+  }
+
+  .shimmer-effect,
+  .fade-in,
+  .fade-in-up,
+  .slide-in-right,
+  .hover-lift {
     animation: none !important;
     transition: none !important;
   }
