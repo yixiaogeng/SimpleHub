@@ -1,6 +1,8 @@
 # Build web frontend
 FROM node:18-alpine AS webbuild
 WORKDIR /web
+ARG NPM_REGISTRY=https://registry.npmmirror.com
+RUN npm config set registry "$NPM_REGISTRY"
 COPY web/package*.json ./
 # 安装所有依赖（包括 devDependencies，因为需要 vite 等构建工具）
 RUN npm ci || npm install
@@ -10,6 +12,8 @@ RUN npm run build
 # Build server and generate Prisma client
 FROM node:18-alpine AS serverbuild
 WORKDIR /server
+ARG NPM_REGISTRY=https://registry.npmmirror.com
+RUN npm config set registry "$NPM_REGISTRY"
 COPY server/package*.json ./
 # 先安装所有依赖以生成 Prisma client
 RUN npm ci || npm install

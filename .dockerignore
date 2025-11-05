@@ -3,6 +3,8 @@
 **/npm-debug.log
 **/package-lock.json
 **/yarn.lock
+!server/package-lock.json
+!web/package-lock.json
 
 # Build outputs
 **/dist
